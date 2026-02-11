@@ -1,0 +1,50 @@
+<header class="header">
+  <p-toolbar>
+    <ng-template #start>
+      <span class="app-name">{{ title() }}</span>
+    </ng-template>
+
+    <ng-template #end>
+      <div class="header-actions">
+        <!-- Dark Mode Toggle -->
+        <p-button
+          [icon]="themeService.isDarkMode() ? 'pi pi-moon' : 'pi pi-sun'"
+          (click)="themeService.toggleDarkMode()"
+          severity="secondary"
+          [text]="true"
+        />
+
+        <!-- Language Menu -->
+        <p-button
+          icon="pi pi-globe"
+          label="Lingua"
+          (click)="langMenu.toggle($event)"
+          severity="secondary"
+          [text]="true"
+        />
+        <p-menu #langMenu [model]="languageMenuItems" [popup]="true" />
+
+        <!-- Profile Menu -->
+        <p-button
+          icon="pi pi-user"
+          label="Profilo"
+          (click)="profileMenu.toggle($event)"
+          severity="primary"
+          [text]="true"
+        />
+        <p-menu #profileMenu [model]="profileMenuItems" [popup]="true" />
+      </div>
+    </ng-template>
+  </p-toolbar>
+</header>
+
+<main class="main-content">
+  <router-outlet />
+</main>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-left">Dadi & Maschere APS</div>
+    <div class="footer-right">{{ title() }} v{{ version() }}</div>
+  </div>
+</footer>
